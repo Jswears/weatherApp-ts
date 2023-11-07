@@ -7,7 +7,7 @@ const weatherApi = import.meta.env.VITE_WEATHER_API_KEY;
 const WeatherPage: React.FC = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [units, setUnits] = useState<string>("metric");
+  const [units, setUnits] = useState<string>("celsius");
 
   const getWeather = async () => {
     const res = await axios.get(
@@ -24,15 +24,15 @@ const WeatherPage: React.FC = () => {
   };
 
   const toggleUnits = () => {
-    if (units === "metric") {
-      setUnits("imperial");
+    if (units === "celsius") {
+      setUnits("fahrenheit");
     } else {
-      setUnits("metric");
+      setUnits("celsius");
     }
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 flex flex-col justify-center items-center">
+    <div className="bg-gray-100 min-h-screen p-4 flex flex-col justify-center items-center border-slate-700">
       <h1 className="text-3xl font-semibold mb-4">Weather App</h1>
       <form onSubmit={handleSubmit} className="mb-4">
         <label htmlFor="city" className="mr-2"></label>

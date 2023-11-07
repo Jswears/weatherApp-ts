@@ -9,11 +9,17 @@ type WeatherCardProps = {
 const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, units }) => {
   if (weatherData) {
     return (
-      <div className="bg-white p-4 rounded-md shadow-md">
-        <h2 className="text-xl font-semibold mb-2">{weatherData.name}</h2>
+      <div className="bg-white p-4 rounded-md shadow-md w-96 border-2 border-slate-500">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold mb-2">{weatherData.name}</h2>
+          <img
+            src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+            alt="Icon"
+          />
+        </div>
         <p className="mb-2">
           Temperature:{" "}
-          {units === "imperial"
+          {units === "fahrenheit"
             ? toFahrenheit(weatherData.main.temp) + "° F"
             : Math.floor(weatherData.main.temp) + "° C"}
         </p>
@@ -22,7 +28,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, units }) => {
         </p>
         <p className="mb-2">
           Feels like :{" "}
-          {units === "imperial"
+          {units === "fahrenheit"
             ? toFahrenheit(weatherData.main.feels_like) + "° F"
             : Math.floor(weatherData.main.feels_like) + "° C"}
         </p>
